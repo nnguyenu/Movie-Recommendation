@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Movie Recommendator</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h2 style="text-align: center">These are your favourite movies.</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Release Date</th>
+            <th>Rating</th>
+        </tr>
+        {% for movie in movies_list %}
+            <tr>
+                <td>{{ movie.content }}</td>
+                <!-- <td><a href="{{ movie.imdb_link }}">Link</a></td> -->
+                <td>{{ movie.release_date }}</td>
+                <td>{{ movie.rate }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h2 style="text-align: center">These are the movies we recommend you.</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Release Date</th>
+        </tr>
+        {% for movie in rec_movie_list %}
+            <tr>
+                <td>{{ movie.content }}</td>
+                <!-- <td><a href="{{ movie.imdb_link }}">Link</a></td> -->
+                <td>{{ movie.release_date }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
