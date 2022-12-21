@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Movie Recommendator</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h2 style="text-align: center">List your favourite movies and I will give you a similar movie.</h2>
+    {% if movies_list|length == 0 %}
+    <h4 style="text-align: center">There are no movies. Put one below!</h4>
+    {% else %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Release Date</th>
+            <th>Rating</th>
+            <th>Action</th>
+        </tr>
+        {% for movie in movies_list %}
+            <tr>
+                <td>{{ movie.content }}</td>
+                <!-- <td><a href="{{ movie.imdb_link }}">Link</a></td> -->
+                <td>{{ movie.release_date }}</td>
+                <td>{{ movie.rate }}</td>
+                <td>
+                    <a href="/delete/{{movie.id}}">Delete</a>
+                    <br>
+                    <a href="/update/{{movie.id}}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <div class="form">
+        <form action="/" method="POST">
+            <h3>Enter movie name: <input type="text" name="content" id="content"> </h3>
+            <h3>Enter your rating: <input type="number" name="rate" id="rate"> </h3>
+            <input type="submit" value="Add Movies">
+        </form>
+    </div>
+    {% if movies_list|length > 4 %}
+    <button onclick="location.href='/analyze'" type="button"><h1>Get recommendation</h1></button>
+    {% endif %}
+</div>
+{% endblock %}
