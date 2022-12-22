@@ -29,7 +29,7 @@ def index():
     if request.method == 'POST':
         movie_content,url,release_date,movie_id = extract.read_items(request.form['content'])
         movie_rate = request.form['rate']
-        if movie_content == "No movie found" or movie_rate == None:
+        if movie_content == "No movie found" or movie_rate == None or movie_rate < 0 or movie_rate > 5:
             return redirect('/')
         new_movie = Movie(content=movie_content,rate=movie_rate,imdb_link=url,release_date=release_date,movie_id=movie_id)
         try:
@@ -80,7 +80,7 @@ def analyze():
     movie_id_list = [_.movie_id for _ in movies_list]
     movie_rate_list = [_.rate for _ in movies_list]
 
-    rec_movie_id = model2.predict(movie_id_list,movie_rate_list)
+    rec_movie_id = model.predict(movie_id_list,movie_rate_list)
     rec_movie_list = []
     for i in rec_movie_id:
         movie_content,url,release_date,movie_id = extract.read_items_id(i)
