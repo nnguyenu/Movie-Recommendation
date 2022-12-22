@@ -7,10 +7,16 @@ This is my Christmas project. You will put your own rating of some movies (from 
 
 The dataset is [MovieLens 100K Dataset](https://grouplens.org/datasets/movielens/100k/) so you can only rate movies before 1998 :(
 
+REQUIREMENTS
+------------
+
 To use this project, you need to install
 + [Flask SQL-Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/)
 + [Pandas](https://pandas.pydata.org/)
 + [Scikit-learn](https://scikit-learn.org/stable/)
+
+INSTALLATION
+------------
 ```
 pip3 install virtual env
 virtual env
@@ -26,4 +32,9 @@ python3
 >>> app.app_context().push()
 >>> db.create_all()
 >>> exit()
+```
+RUNNING
+-------
+```
+python app.py
 ```
